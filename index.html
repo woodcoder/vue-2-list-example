@@ -3,18 +3,27 @@
   <head>
     <meta charset="utf-8">
     <title>iBoards</title>
+    <link rel="stylesheet" href="css/fonts.css"></head>
   </head>
   <body>
     <div id="app">
+      <select v-model="type">
+        <option value="icon-dice">Board Game</option>
+        <option value="icon-spades">Card Game</option>
+      </select>
       <input v-model="game">
-      {{ game }}
+      <p>
+        <span :class="type"></span>
+        {{ game }}
+      </p>
     </div>
     <script src="node_modules/vue/dist/vue.js"></script>
     <script>
       var app = new Vue({
         el: '#app',
         data: {
-          game: 'Hello!'
+          game: 'Snakes and Ladders',
+          type: 'icon-dice'
         }
       })
     </script>
