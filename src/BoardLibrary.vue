@@ -40,10 +40,15 @@ module.exports = {
     },
     sorted: function() {
       // update each game with its index in the array
-      this.games.forEach(function (value, index) {
-        value.index = index
+      this.games.forEach(function (game, index) {
+        game.index = index
       })
-      return _.sortBy(this.games, [this.sort])
+      // always sort by name, just sort by type first, if necessary
+      var sortBy = this.sort == 'type' ? ['type'] : []
+      sortBy.push(function (game) {
+        return game.name.toLowerCase()
+      })
+      return _.sortBy(this.games, sortBy)
     }
   },
   methods: {
