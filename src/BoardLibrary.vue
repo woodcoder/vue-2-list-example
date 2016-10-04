@@ -8,15 +8,14 @@
     <button @click="addGame">Add</button>
     <p v-if="empty">Zarro Boords!</p>
     <ul v-else>
-      <li v-for="g in games">
-        <span :class="icon(g.type)"></span>
-        {{ g.game }}
-      </li>
+      <board-game v-for="g in games" :type="g.type" :name="g.game"></board-game>
     </ul>
   </div>
 </template>
 
 <script>
+var BoardGame = require('./BoardGame.vue')
+
 module.exports = {
   data: function() {
     return {
@@ -36,10 +35,10 @@ module.exports = {
         game: this.game,
         type: this.type
       })
-    },
-    icon: function (type) {
-      return 'icon-' + type
     }
+  },
+  components: {
+    BoardGame: BoardGame
   }
 }
 </script>
