@@ -2,6 +2,7 @@
   <li>
     <span :class="icon"></span>
     {{ name }}
+    <slot></slot>
   </li>
 </template>
 
