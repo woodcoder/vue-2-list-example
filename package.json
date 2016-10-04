@@ -10,6 +10,7 @@
     "build": "cross-env NODE_ENV=production browserify -g envify src/main.js | uglifyjs -c warnings=false -m > dist/app.js"
   },
   "dependencies": {
+    "lodash": "^4.16.3",
     "vue": "^2.0.1"
   },
   "devDependencies": {
@@ -27,7 +28,7 @@
     "watchify": "^3.4.0"
   },
   "browser": {
-      "vue": "vue/dist/vue.js"
+    "vue": "vue/dist/vue.js"
   },
   "browserify": {
     "transform": [
