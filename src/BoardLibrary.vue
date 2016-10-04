@@ -1,26 +1,20 @@
 <template>
   <div>
-    <select v-model="type">
-      <option value="dice">Board Game</option>
-      <option value="spades">Card Game</option>
-    </select>
-    <input v-model="game" @keyup.enter="addGame">
-    <button @click="addGame">Add</button>
+    <board-add @add="handleAdd"></board-add>
     <p v-if="empty">Zarro Boords!</p>
     <ul v-else>
-      <board-game v-for="g in games" :type="g.type" :name="g.game"></board-game>
+      <board-game v-for="game in games" :type="game.type" :name="game.name"></board-game>
     </ul>
   </div>
 </template>
 
 <script>
+var BoardAdd = require('./BoardAdd.vue')
 var BoardGame = require('./BoardGame.vue')
 
 module.exports = {
   data: function() {
     return {
-      game: '',
-      type: 'dice',
       games: []
     }
   },
@@ -30,14 +24,12 @@ module.exports = {
     }
   },
   methods: {
-    addGame: function () {
-      this.games.push({
-        game: this.game,
-        type: this.type
-      })
+    handleAdd: function (game) {
+      this.games.push(game)
     }
   },
   components: {
+    BoardAdd: BoardAdd,
     BoardGame: BoardGame
   }
 }
