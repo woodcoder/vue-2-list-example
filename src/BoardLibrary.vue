@@ -1,11 +1,21 @@
 <template>
-  <div>
+  <div class="container">
+    <h1>iBoards Library</h1>
     <board-add @add="handleAdd"></board-add>
     <p v-if="empty">Zarro Boords!</p>
-    <ul v-else>
-      <board-game v-for="(game, index) in games" :type="game.type" :name="game.name">
-        <board-delete :index="index" @delete="handleDelete"></board-delete>
-      </board-game>
+    <table v-else>
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Name</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <board-game v-for="(game, index) in games" :type="game.type" :name="game.name">
+          <board-delete :index="index" @delete="handleDelete"></board-delete>
+        </board-game>
+      </tbody>
     </ul>
   </div>
 </template>
@@ -41,3 +51,9 @@ module.exports = {
   }
 }
 </script>
+
+<style>
+  table {
+    width: 100%;
+  }
+</style>

@@ -1,9 +1,9 @@
 <template>
-  <li>
-    <span :class="icon"></span>
-    {{ name }}
-    <slot></slot>
-  </li>
+  <tr>
+    <td><span :class="icon"></span></td>
+    <td>{{ name }}</td>
+    <td><slot></slot></td>
+  </tr>
 </template>
 
 <script>
