@@ -10,10 +10,10 @@
       </div>
       <div class="three columns">
         <label for="name">Name</label>
-        <input name="name" type="text" v-model="name" @keyup.enter="add">
+        <input name="name" type="text" ref="name" v-model="name" @keyup.enter="add">
       </div>
       <div class="one columns">
-        <button class="button-primary" @click="add">Add</button>
+        <button class="button-primary" :disabled="blankName" @click="add">Add</button>
       </div>
   </div>
 </template>
@@ -26,13 +26,24 @@ module.exports = {
       type: 'dice',
     }
   },
+  computed: {
+    blankName: function() {
+      return this.name.trim().length == 0
+    }
+  },
   methods: {
     add: function () {
-      this.$emit('add', {
-        name: this.name,
-        type: this.type
-      })
+      if (!this.blankName) {
+        this.$emit('add', {
+          name: this.name.trim(),
+          type: this.type
+        })
+        this.name = ''
+      }
     }
+  },
+  mounted: function() {
+    this.$refs.name.focus()
   }
 }
 </script>
@@ -44,5 +55,12 @@ module.exports = {
   }
   button {
     margin-top: 2.9rem;
+  }
+  button[disabled] {
+    opacity: 0.5;
+  }
+  button[disabled]:hover {
+    background-color: #33C3F0;
+    border-color: #33C3F0;
   }
 </style>
