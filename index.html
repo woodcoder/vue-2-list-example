@@ -12,18 +12,23 @@
         <option value="icon-spades">Card Game</option>
       </select>
       <input v-model="game">
-      <p>
-        <span :class="type"></span>
-        {{ game }}
-      </p>
+      <button @click="games.push({game: game, type: type})">Add</button>
+      <p v-if="games.length == 0">Zarro Boords!</p>
+      <ul v-else>
+        <li v-for="g in games">
+          <span :class="g.type"></span>
+          {{ g.game }}
+        </li>
+      </ul>
     </div>
     <script src="node_modules/vue/dist/vue.js"></script>
     <script>
       var app = new Vue({
         el: '#app',
         data: {
-          game: 'Snakes and Ladders',
-          type: 'icon-dice'
+          game: '',
+          type: 'icon-dice',
+          games: []
         }
       })
     </script>
