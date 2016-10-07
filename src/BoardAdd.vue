@@ -1,14 +1,14 @@
 <template>
   <div>
     <div class="row">
-      <div class="two columns">
+      <div class="three columns">
         <label for="type">Type</label>
         <select name="type" v-model="type">
           <option value="dice">Board Game</option>
           <option value="spades">Card Game</option>
         </select>
       </div>
-      <div class="three columns">
+      <div class="four columns">
         <label for="name">Name</label>
         <input name="name" type="text" ref="name" v-model="name" @keyup.enter="add">
       </div>
@@ -48,7 +48,7 @@ module.exports = {
 }
 </script>
 
-<style>
+<style scoped>
   input,
   select {
     width: 100%;
