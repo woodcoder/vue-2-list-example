@@ -1,8 +1,12 @@
 {
   "name": "i-boards",
-  "description": "iBoards Library",
+  "description": "iBoards Library -- a Vue.js 2.0 example shown at the Tech Exeter conference",
   "author": "Andy Wood <andy@ideaflip.com>",
-  "private": true,
+  "license": "MIT",
+  "repository": {
+      "type": "git",
+      "url": "https://github.com/woodcoder/vue-2-list-example.git"
+  },
   "scripts": {
     "watchify": "watchify -vd -p browserify-hmr -e src/main.js -o dist/app.js",
     "serve": "http-server -o -s -c 1 -a localhost",
