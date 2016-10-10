@@ -5,11 +5,11 @@
 <script>
 module.exports = {
   props: [
-    'index'
+    'id'
   ],
   methods: {
     del: function () {
-      this.$emit('delete', this.index)
+      this.$emit('delete', this.id)
     }
   }
 }

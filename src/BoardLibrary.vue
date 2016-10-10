@@ -11,12 +11,12 @@
           <th></th>
         </tr>
       </thead>
-      <tbody>
-        <board-game v-for="game in sorted" :type="game.type" :name="game.name">
-          <board-delete :index="game.index" @delete="handleDelete"></board-delete>
+      <transition-group name="board-list" tag="tbody">
+        <board-game v-for="game in sorted" :type="game.type" :name="game.name" :key="game.id">
+          <board-delete :id="game.id" @delete="handleDelete"></board-delete>
         </board-game>
-      </tbody>
-    </ul>
+      </transition-group>
+    </table>
   </div>
 </template>
 
@@ -26,6 +26,7 @@ var BoardAdd = require('./BoardAdd.vue')
 var BoardGame = require('./BoardGame.vue')
 var BoardDelete = require('./BoardDelete.vue')
 var BoardSort = require('./BoardSort.vue')
+var idGenerator = 0
 
 module.exports = {
   data: function() {
@@ -39,10 +40,6 @@ module.exports = {
       return this.games.length == 0
     },
     sorted: function() {
-      // update each game with its index in the array
-      this.games.forEach(function (game, index) {
-        game.index = index
-      })
       // always sort by name, just sort by type first, if necessary
       var sortBy = this.sort == 'type' ? ['type'] : []
       sortBy.push(function (game) {
@@ -53,10 +50,16 @@ module.exports = {
   },
   methods: {
     handleAdd: function (game) {
+      game.id = idGenerator++
       this.games.push(game)
     },
-    handleDelete: function (index) {
-      this.games.splice(index, 1)
+    handleDelete: function (id) {
+      for (var i = 0; i < this.games.length; i++) {
+        if (this.games[i].id == id) {
+          this.games.splice(i, 1)
+          return
+        }
+      }
     },
   },
   components: {
@@ -69,6 +72,22 @@ module.exports = {
 </script>
 
 <style>
+  .board-list-move {
+    transition: transform 1s;
+  }
+  .board-list-enter-active, .board-list-leave-active {
+    transition: all 0.5s;
+  }
+  .board-list-enter, .board-list-leave-active {
+    opacity: 0;
+  }
+  .board-list-enter {
+    transform: translateX(960px);
+  }
+  .board-list-leave-active {
+    transform: translateX(-960px);
+  }
+
   table {
     width: 100%;
     table-layout: fixed;
