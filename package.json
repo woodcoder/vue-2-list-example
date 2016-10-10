@@ -27,9 +27,6 @@
     "vueify": "^9.1.0",
     "watchify": "^3.4.0"
   },
-  "browser": {
-    "vue": "vue/dist/vue.js"
-  },
   "browserify": {
     "transform": [
       "vueify",
