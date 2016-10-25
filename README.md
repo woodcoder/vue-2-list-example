@@ -1,6 +1,8 @@
-# i-boards
+# Vue.js 2.0 Code Example
 
-> iBoards Library
+The iBoards code as shown in the TechExeter Conference 'Enjoy the Vue.js' talk.
+http://www.slideshare.net/techexeter/enjoy-the-vuejs
+
 
 ## Build Setup
 
